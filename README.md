@@ -1,31 +1,35 @@
 # web2py-pyinstaller 
-How to make web2py Windows & Macintosh binaries with python 2 / 3 and pyinstaller 
+How to make web2py Windows & Macintosh binaries with pyinstaller and [pywebview](https://github.com/r0x0r/pywebview).
+Forked from [nicozanf/web2py-pyinstaller](https://github.com/nicozanf/web2py-pyinstaller). Read your documentation for more details.
 
-**********************************************************************************
-Please, help with testing. Write the results directly to me (nicozanf@gmail.com)   
-**********************************************************************************  
+## Instructions(for Windows x64 bits)
+1. Get a clean Windows 10 (Windows 10 Home 64 bit, under Virtualbox in my case).
+2. Grab and install the official Python program: I've got version 3.7.4, 64 bit (https://www.python.org/ftp/python/3.7.2/python-3.7.3-amd64.exe ) + select "add Python 3.7 to PATH" during its setup if Python 3.
+3. Update tools with
+```
+python -m pip install --upgrade pip
+pip install --upgrade setuptools
+```
+4. Grab latest [web2py source](https://mdipierro.pythonanywhere.com/examples/static/web2py_src.zip) (you need at least 2.18.3 for needed changes in gluon\admin.py). Unzip it in a dedicated folder, in this example `C:\web2py`- so that you have `C:\web2py\web2py.py` inside.
+5. Install PyInstaller with
+```
+pip install pyinstaller
+```
+6. Install requirements with:
+```
+pip install -t site-packages cefpython3
+pip install -t site-packages pywebview
+```
+See [HOWTO-modules](https://github.com/bruino/web2py-pyinstaller/blob/master/HOWTO-modules.md) for more details.
 
-## Which version should you use?
+7. (For Windows 7) download and install the free Microsoft Visual C++ Redistributable per Visual Studio 2017, 64 bit version.
 
-The recommended version for new users is the one with Python 3 embedded. Use Python 2 only if you need to use old existing apps.
+8. Copy from this repository `start.py` to `C:\web2py\`.
 
-## MacOS execution problems
+9. Copy `build_web2py.py`, `web2py.win.spec` and `web2py.win_no_console.spec` from this repository to `C:\web2py\`
 
-Unfortunately, on MacOs 10.12+ Apple has changed the security settings and this has somehow broken the bundles apps normal behaviour. If you face execution problems, please follow one of the following advices:
-
-- 'control' + click on downloaded file and then 'open' it (confirm the warnings). Then move the file in Applications and run it from there.
--  download the files from another OS (Windows or Linux) and then use an USB key / drive in order to copy them to the Mac. This will not insert the security Extended Attribute onto them.
-- after dowloading the app, on a Terminal go to that folder and run 'xattr -d com.apple.quarantine  web2py.app' in order to delete the security Extended Attribute
-
-## Module HOWTO
-Also, there is [a simple HOWTO](https://github.com/nicozanf/web2py-pyinstaller/blob/master/HOWTO-modules.md) that shows how to install additional modules directly on the binaries.   
-  
-## History: 
-web2py has Windows and Macintosh binaries made with py2exe and later with bbfreeze (see [Niphlod's page](http://www.web2pyslices.com/slice/show/1726/build-windows-binaries) ). Unfortunately, while web2py nowadays runs fine with pyhton 3.5+ these build tools are not currently compatible with python >= 3.5.  
-Hence I've started to look for alternatives, and after some work I've succeeded to gain 64 bit binaries using [Pyinstaller](https://github.com/pyinstaller/pyinstaller).
-
-Here you can find the experimental binary for MacOs and Windows, build by me with python 3.7 but also with python 2.7 if you still use it.
-
-If you prefer to build them by yourself, see the specific README [for Windows](https://github.com/nicozanf/web2py-pyinstaller/blob/master/README_win.md) and [for Mac](https://github.com/nicozanf/web2py-pyinstaller/blob/master/README_mac.md).
-
-
+10. Open a CMD and go to `C:\web2py`. Run:
+```
+python build_web2py.py`
+```
+If everything goes fine, you'll obtain the 64 bit binary build zipped as `C:\web2py\web2py_win.zip`.
