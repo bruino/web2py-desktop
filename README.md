@@ -1,4 +1,4 @@
-# web2py-pyinstaller 
+# web2py-desktop 
 How to make web2py Windows & Macintosh binaries with pyinstaller and [pywebview](https://github.com/r0x0r/pywebview).
 Forked from [nicozanf/web2py-pyinstaller](https://github.com/nicozanf/web2py-pyinstaller). Read your documentation for more details.
 
